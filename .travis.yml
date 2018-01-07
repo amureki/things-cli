@@ -4,11 +4,13 @@ cache:
 - pip
 python:
 - '3.6'
-- '3.7-dev'
-matrix:
-  fast_finish: true
-  allow_failures:
-  - python: '3.7-dev'
+env:
+  global:
+  - FROM_EMAIL='from'
+  - FROM_EMAIL_PASSWORD='from_pwd'
+  - TO_EMAIL='to'
+  - SMTP_ADDRESS='address'
+  - SMTP_PORT='port'
 install:
 - pip install pipenv
 - pipenv install --dev
