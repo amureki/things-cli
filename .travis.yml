@@ -1,0 +1,24 @@
+language: python
+sudo: false
+branches:
+  only:
+  - master
+cache:
+- pip
+python:
+- 3.6
+env:
+  global:
+  - FROM_EMAIL='from'
+  - FROM_EMAIL_PASSWORD='from_pwd'
+  - TO_EMAIL='to'
+  - SMTP_ADDRESS='address'
+  - SMTP_PORT='port'
+install:
+- pip install pipenv
+- pipenv install --dev
+- pipenv install codecov
+script:
+- pipenv run coverage run --source things_cli -m pytest tests
+after_success:
+- codecov
