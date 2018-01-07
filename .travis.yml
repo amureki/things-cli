@@ -1,9 +1,12 @@
 language: python
 sudo: false
+branches:
+  only:
+  - master
 cache:
 - pip
 python:
-- '3.6'
+- 3.6
 env:
   global:
   - FROM_EMAIL='from'
