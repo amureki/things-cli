@@ -1,0 +1,19 @@
+language: python
+sudo: false
+cache:
+- pip
+python:
+- '3.6'
+- '3.7-dev'
+matrix:
+  fast_finish: true
+  allow_failures:
+  - python: '3.7-dev'
+install:
+- pip install pipenv
+- pipenv install --dev
+- pipenv install codecov
+script:
+- pipenv run coverage run --source things_cli -m pytest tests
+after_success:
+- codecov
