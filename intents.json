@@ -1,0 +1,104 @@
+{
+  "languageModel": {
+    "types": [
+      {
+        "name": "TASK",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "buy milk",
+              "synonyms": []
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "ThingsIntent",
+        "samples": [
+          "add a new task to {taskTitle}",
+          "add a task to {taskTitle}",
+          "create a task",
+          "create a new task",
+          "add a task",
+          "add a new task",
+          "create a new task to {taskTitle}",
+          "create a task to {taskTitle}",
+          "set a new task",
+          "set a task"
+        ],
+        "slots": [
+          {
+            "name": "taskTitle",
+            "type": "TASK",
+            "samples": [
+              "{taskTitle}"
+            ]
+          }
+        ]
+      }
+    ],
+    "invocationName": "things"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-ThingsIntent.IntentSlot-taskTitle",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What task it would be?"
+        },
+        {
+          "type": "PlainText",
+          "value": "What do you want to add?"
+        },
+        {
+          "type": "PlainText",
+          "value": "Tell me, what do you want to add"
+        },
+        {
+          "type": "PlainText",
+          "value": "What can I add for you?"
+        },
+        {
+          "type": "PlainText",
+          "value": "What shall I add?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "ThingsIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "taskTitle",
+            "type": "TASK",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-ThingsIntent.IntentSlot-taskTitle"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
